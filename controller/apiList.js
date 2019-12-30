@@ -14,9 +14,6 @@ export const getUrl = (path) => {
     return url
 };
 
-// export const fetchData = (url)=>{
-//     return axios.get(url);
-// }
 
  export async function getAllData(URLs){
     let networkRequestPromises = URLs.map(fetchData);
@@ -24,15 +21,12 @@ export const getUrl = (path) => {
 }
 
 function fetchData(URL) {
-    return axios
-        .get(URL)
-        .then(function(response) {
+    return axios.get(URL).then(function(response) {
             return {
                 success: true,
                 data: response.data
             };
-        })
-        .catch(function(error) {
+        }).catch(function(error) {
             return { success: false };
         });
 }
