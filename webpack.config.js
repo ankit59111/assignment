@@ -1,11 +1,12 @@
 const webpack = require('webpack');
 const webpackNodeExternals = require('webpack-node-externals');
+const uglifyJs = require('uglifyjs-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-
+var devmode = 'development';
 module.exports = [
     {
-        mode: "development",
+        mode: devmode,
         entry: "./server/index.js",
         output: {
             path: __dirname + '/dist',
@@ -15,6 +16,10 @@ module.exports = [
         },
         target: "node",
         externals: webpackNodeExternals(),
+        optimization: {
+            minimize: true,
+            minimizer: [new uglifyJs()]
+        },
         module: {
             rules: [
                 {
@@ -23,13 +28,18 @@ module.exports = [
                     exclude: /node_modules/,
                     loader: 'babel-loader',
 
+                },
+                {
+                    test: /\.(sa|sc|c)ss$/, // this regex read all types of css and css pre-processor
+                    loader: ['ignore-loader'],
+
                 }
             ]
         }
     },
     {
         // In this module change the code for bundling of client
-        mode: "development",
+        mode: devmode,
         entry: './react/index.js',
         output: {
             path: __dirname+'/dist/assets',
@@ -44,14 +54,11 @@ module.exports = [
                 filename: '[name].css',
                 chunkFilename: '[id].css',
                 ignoreOrder: false, // Enable to remove warnings about conflicting order
-            }),
-            // new webpack.ProvidePlugin({
-            //     $: "jquery",
-            //     jQuery: "jquery",
-            //     "window.jQuery": "jquery"
-            // }),
+            })
         ],
         optimization: {
+            minimize: true,
+            minimizer: [new uglifyJs()],
             splitChunks: {
                 cacheGroups: {
                     commons: { // here we are creating seperate bundle for node modules
