@@ -1,0 +1,9 @@
+footer{
+    position: relative;
+    top: 50px;
+    bottom: 0;
+    background-color: #03ac0e;
+    line-height: 2;
+    color: honeydew;
+    padding: 15px;
+}
