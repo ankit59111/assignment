@@ -8,8 +8,10 @@ export const getUrl = (path) => {
             break;
         case '' :
             url = [`https://node-sample-api.herokuapp.com/api/home`,`https://node-sample-api.herokuapp.com/api/products?page=1`];
+            break;
         default :
-            url = [`https://node-sample-api.herokuapp.com/api/home`]
+            url = [`https://node-sample-api.herokuapp.com/api/home`];
+            break;
     }
     return url
 };

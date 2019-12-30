@@ -1,0 +1,23 @@
+#carousel ul{
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    background: beige;
+    overflow: hidden;
+    height: 430px;
+    padding: 60px;
+}
+
+.mySlides img{
+    width: 900px;
+    height: 300px;
+}
+@media (max-width:700px ) {
+    #carousel ul{
+        height: auto;
+    }
+    .mySlides img{
+        width: 100vw;
+        height: calc(100vw*0.6);
+    }
+}
