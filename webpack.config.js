@@ -1,9 +1,8 @@
 const webpack = require('webpack');
 const webpackNodeExternals = require('webpack-node-externals');
-const uglifyJs = require('uglifyjs-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-var devmode = 'development';
+var devmode = 'production';
 module.exports = [
     {
         mode: devmode,
@@ -18,7 +17,6 @@ module.exports = [
         externals: webpackNodeExternals(),
         optimization: {
             minimize: true,
-            minimizer: [new uglifyJs()]
         },
         module: {
             rules: [
@@ -58,7 +56,6 @@ module.exports = [
         ],
         optimization: {
             minimize: true,
-            minimizer: [new uglifyJs()],
             splitChunks: {
                 cacheGroups: {
                     commons: { // here we are creating seperate bundle for node modules
