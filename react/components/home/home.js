@@ -19,7 +19,7 @@ export default function Home(props) {
                 isLoadedAction(true);
             })
         }
-    }, [data, isLoaded]);
+    }, [isLoaded]);
 
     return (
         isLoaded || data ?
