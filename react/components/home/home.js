@@ -13,10 +13,12 @@ export default function Home(props) {
 
     useEffect(() => {
         const url = getUrl(props.match.path);
-        getAllData(url).then(res => {
-            loadData(res);
-            isLoadedAction(true);
-        })
+        if(!isLoaded) {
+            getAllData(url).then(res => {
+                loadData(res);
+                isLoadedAction(true);
+            })
+        }
     }, [data, isLoaded]);
 
     return (
